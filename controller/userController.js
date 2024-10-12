@@ -10,32 +10,38 @@ const bcrypt=require("bcrypt")
 
 const uploadImg=asyncHandler (async (req,res)=>{
 
-    const username=req.body.username;
-    const socialID=req.body.socialID;
+    try {
+        const username=req.body.username;
+        const socialID=req.body.socialID;
 
-    const imageUrls = req.images;
+        const imageUrls = req.images;
 
-    //Checking if we already have an existing database for that email
+        //Checking if we already have an existing database for that email
 
-    const userAvailable=await User.findOne({username,socialID}) 
+        const userAvailable=await User.findOne({username,socialID}) 
 
-    if(!userAvailable){
-        const user= await User.create({
-            username,
-            socialID,  
-            images: imageUrls,
-        });
-        return res.status(200).json({ message: "User Created and Images uploaded successfully" });
+        if(!userAvailable){
+            const user= await User.create({
+                username,
+                socialID,  
+                images: imageUrls,
+            });
+            return res.status(200).json({ message: "User Created and Images uploaded successfully" });
+        }
+        else{
+
+            await User.updateOne(
+                { _id: userAvailable._id },
+                { $push: { images: { $each: imageUrls } } });
+            
+            return res.status(200).json({ message: "Images uploaded successfully" });
+            
+        }
     }
-    else{
-
-        await User.updateOne(
-            { _id: userAvailable._id },
-            { $push: { images: { $each: imageUrls } } });
-        
-        return res.status(200).json({ message: "Images uploaded successfully" });
-        
-    }
+    catch (error) {
+        console.error("Error uploading images:", error);
+        res.status(500).json({ message: "Server error during image upload." });
+      }
 
 });
 
