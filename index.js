@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // User routes
+app.get('/', (req, res) => {
+  res.send('Welcome to the Home Page!');
+});
+
 app.use('/api/user', require('./routes/userRoutes'));
 //admin routes
 app.use("/api/admin", require("./routes/adminRoutes")); 
