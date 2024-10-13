@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON
 const corsOptions = {
-  origin: 'https://sharadpformfrontend.netlify.app',
+  origin: 'https://sharadformfrontend.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
