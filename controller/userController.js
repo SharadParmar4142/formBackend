@@ -92,6 +92,9 @@ const registerUser=asyncHandler (async (req,res)=>{
 
     //Sending information to the useruser but not sharing the password
     if(admin){
+        res.setHeader('Access-Control-Allow-Origin', 'https://sharadformfrontend.netlify.app');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         res.status(200).json({_id:admin.id});
     }
     else{
@@ -120,6 +123,10 @@ const loginUser=asyncHandler (async (req,res)=>{
     if(admin && (await bcrypt.compare(password,admin.password))){
 
         const users = await User.find({}, 'username socialID images');
+
+        res.setHeader('Access-Control-Allow-Origin', 'https://sharadformfrontend.netlify.app');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
         res.status(200).json({
             message: "Login successful",
