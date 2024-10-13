@@ -15,9 +15,12 @@ const corsOptions = {
   origin: 'https://sharadformfrontend.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
