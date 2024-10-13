@@ -11,7 +11,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON
-app.use(cors());
+app.use(cors({
+  origin: 'https://sharadpformfrontend.netlify.app', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // User routes
