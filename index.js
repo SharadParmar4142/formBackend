@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const connectDb = require('./config/dbConnection');
+const cors = require("cors");
 
 // Connect to the database
 connectDb();
@@ -10,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON
+app.use(cors());
 app.use(express.json());
 
 // User routes

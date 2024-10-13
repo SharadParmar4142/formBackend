@@ -6,10 +6,6 @@ const router=express.Router();
 
 router.post("/upload",upload.array("images"),uploadMultiple,uploadImg)
 
-router.post("/login",loginUser)
-
-router.post("/register",registerUser)
-
 
 
 module.exports=router;
