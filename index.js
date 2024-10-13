@@ -16,6 +16,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
