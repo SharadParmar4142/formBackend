@@ -11,12 +11,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON
-app.use(cors({
-  origin: 'https://sharadformfronted.netlify.app/', 
+const corsOptions = {
+  origin: 'https://sharadpformfrontend.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
-}));
-app.options('*', cors(corsOptions));
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
