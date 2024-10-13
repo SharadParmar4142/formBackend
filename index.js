@@ -12,14 +12,14 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON
 const corsOptions = {
-  origin: 'https://sharadformfrontend.netlify.app',
+  origin: 'https://sharadpformfrontend.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'], 
 };
 
 app.use(cors(corsOptions));
-
-app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions)); 
 
 app.use(express.json());
 
@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/user', require('./routes/userRoutes'));
-//admin routes
-app.use("/api/admin", require("./routes/adminRoutes")); 
+// Admin routes
+app.use("/api/admin", require("./routes/adminRoutes"));
 
 // Start the server
 app.listen(PORT, () => {
