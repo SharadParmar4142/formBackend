@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 3000;
 const corsOptions = {
   origin: 'https://sharadformfrontend.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
